@@ -2,9 +2,7 @@
 Pick and Place task done in an industrial environment using KUKA KR-16 model with the help of Gazebo, RViz and Moveit.
 
 <a name="2.0"></a>
-<!--<div style="text-align:left;">
-  <span style="font-size: 1.4em; margin-top: 0.83em; margin-bottom: 0.83em; margin-left: 0; margin-right: 0; font-weight: bold;"> Environment Setup</span><span style="float:right;"><a href="#top">Back to Top</a></span>
-</div>-->
+
 ### Environment Setup
 The project uses [ROS Noetic](http://wiki.ros.org/noetic) running on [Ubuntu 20.04.5 LTS (Focal Fossa)](https://releases.ubuntu.com/focal/).
 
