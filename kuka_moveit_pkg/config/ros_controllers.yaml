@@ -1,0 +1,20 @@
+controller_list:
+  - name: robot_arm_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: true
+    joints:
+    - Base_Rotary_Joint
+    - Rotary_Lower_Joint
+    - Lower_Upper_Joint
+    - Upper_P2_Joint
+    - P2_Wrist_Joint
+  - name: hand_ee_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    joints:
+    - Grip1_Joint
+    - Grip2_Joint
+
+
+    

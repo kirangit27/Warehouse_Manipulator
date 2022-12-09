@@ -1,0 +1,11 @@
+<launch>
+
+
+    <!--spawn a empty gazebo world-->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch" >
+       <!--<arg name="world_name" value="$(find kuka_prism)/world/aws_warehouse3.world"/>-->
+       <arg name="world_name" value="$(find kuka_prism)/world/aws_warehouse.world"/>
+    </include>
+ 
+
+</launch>

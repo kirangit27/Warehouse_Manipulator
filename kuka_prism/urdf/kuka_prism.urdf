@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot name="kuka_prism">
+  
+  <link name="world"/>
+  <joint name="base_joint" type="fixed">
+    <parent link="world"/>
+    <child link="base_link"/>
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.17"/>
+  </joint>
+  
+  <link  name="base_link">
+    <inertial>
+      <origin
+        xyz="0.00203770125996271 0.0516787420465166 0.154231674692837"
+        rpy="0 0 0" />
+      <mass
+        value="59.5344572235136" />
+      <inertia
+        ixx="1.99175054954146"
+        ixy="-0.0345376637497177"
+        ixz="-0.000618142924361162"
+        iyy="1.58719305664109"
+        iyz="0.0476710164615629"
+        izz="2.15114302906829" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kuka_prism/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.917647058823529 0.43921568627451 0.0666666666666667 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kuka_prism/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="base_link">
+    <material>Gazebo/Black</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+
+  <link  name="Base_Rotary_Link">
+    <inertial>
+      <origin
+        xyz="0.0208827429069736 0.089343928569874 0.0896769735882005"
+        rpy="0 0 0" />
+      <mass
+        value="24.6935705009375" />
+      <inertia
+        ixx="1.06759496553512"
+        ixy="-0.0886910252753023"
+        ixz="-0.087627703242765"
+        iyy="0.756138605709795"
+        iyz="-0.354551325198558"
+        izz="0.636809741979015" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kuka_prism/meshes/Base_Rotary_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.917647058823529 0.43921568627451 0.0666666666666667 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kuka_prism/meshes/Base_Rotary_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="Base_Rotary_Link">
+    <material>Gazebo/Orange</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <joint  name="Base_Rotary_Joint"  type="revolute">
+    <origin
+      xyz="0.00295140614493894 0.0114427763503281 0.373"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Base_Rotary_Link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="500"
+      velocity="50" />
+    <dynamics damping="100" friction="5"/>
+  </joint>
+  <transmission name="base_rotary_rev_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="Base_Rotary_Joint">
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="base_rotary_rev_motor">
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+
+  <link  name="Rotary_Lower_Link">
+    <inertial>
+      <origin
+        xyz="-0.218067850531585 0.228000820007621 0.0967589693013073"
+        rpy="0 0 0" />
+      <mass
+        value="16.467727337451" />
+      <inertia
+        ixx="0.54623145293032"
+        ixy="0.420433502144022"
+        ixz="0.0238052595102046"
+        iyy="0.50067670176559"
+        iyz="-0.0249297912984627"
+        izz="0.904652444820654" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kuka_prism/meshes/Rotary_Lower_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.917647058823529 0.43921568627451 0.0666666666666667 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kuka_prism/meshes/Rotary_Lower_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="Rotary_Lower_Link">
+    <material>Gazebo/Orange</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <joint  name="Rotary_Lower_Joint"  type="revolute">
+    <origin
+      xyz="0.120083091140588 0.225332459849951 0.282"
+      rpy="0.252425765300273 1.57079631189374 0" />
+    <parent
+      link="Base_Rotary_Link" />
+    <child
+      link="Rotary_Lower_Link" />
+    <axis
+      xyz="-0.0263066820881646 0 0.999653919352849" />
+    <limit
+      lower="-0.40"
+      upper="1.20"
+      effort="500"
+      velocity="50" />
+      <dynamics damping="100" friction="5.0"/> 
+  </joint>
+  <transmission name="rotary_lower_rev_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="Rotary_Lower_Joint">
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="rotary_lower_rev_motor">
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <link  name="Lower_Upper_Link">
+    <inertial>
+      <origin
+        xyz="0.0664354130667393 0.0876861565899366 -0.110272650869997"
+        rpy="0 0 0" />
+      <mass
+        value="9.58028877304867" />
+      <inertia
+        ixx="0.139395246423734"
+        ixy="-0.0544935362969246"
+        ixz="0.00300390239346567"
+        iyy="0.0756162769192294"
+        iyz="0.00199264759598737"
+        izz="0.184603625053789" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kuka_prism/meshes/Lower_Upper_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.917647058823529 0.43921568627451 0.0666666666666667 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kuka_prism/meshes/Lower_Upper_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="Lower_Upper_Link">
+    <material>Gazebo/Orange</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <joint  name="Lower_Upper_Joint"  type="revolute">
+    <origin
+      xyz="-0.469936955960101 0.493391330737375 0.0410000000000002"
+      rpy="0 0 0" />
+    <parent
+      link="Rotary_Lower_Link" />
+    <child
+      link="Lower_Upper_Link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.0"
+      upper="1.80"
+      effort="500"
+      velocity="50" />
+    <dynamics damping="100" friction="5.0"/>
+  </joint>
+  <transmission name="lower_upper_rev_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="Lower_Upper_Joint">
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="lower_upper_rev_motor">
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <link  name="Upper_P2_Link">
+    <inertial>
+      <origin
+        xyz="-0.00141641570086826 -0.000525781321933483 0.0900615597783834"
+        rpy="0 0 0" />
+      <mass
+        value="2.45285371756511" />
+      <inertia
+        ixx="0.54623145293032"
+        ixy="0.420433502144022"
+        ixz="0.0238052595102046"
+        iyy="0.50067670176559"
+        iyz="-0.0249297912984627"
+        izz="0.904652444820654" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kuka_prism/meshes/Upper_P2_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.917647058823529 0.43921568627451 0.0666666666666667 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kuka_prism/meshes/Upper_P2_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="Upper_P2_Link">
+    <material>Gazebo/Orange</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <joint  name="Upper_P2_Joint"  type="revolute">
+    <origin
+      xyz="0.25407 0.40374 -0.119"
+      rpy="-1.5708 1.088 -0.5145" />
+    <parent
+      link="Lower_Upper_Link" />
+    <child
+      link="Upper_P2_Link" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="100"
+      velocity="3" />
+  </joint>
+  <transmission name="upper_p2_rev_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="Upper_P2_Joint">
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="upper_p2_cont_motor">
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <link  name="P2_Wrist_Link">
+    <inertial>
+      <origin
+        xyz="-0.0403065091308225 0.0251850660705888 0.039810789967267"
+        rpy="0 0 0" />
+      <mass
+        value="1.92819444444921" />
+      <inertia
+        ixx="0.00977664808983564"
+        ixy="0.00211073374849672"
+        ixz="-9.26860812505038E-05"
+        iyy="0.0118156258224182"
+        iyz="8.44072413727145E-05"
+        izz="0.00735281625391729" />
+      </inertial>
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://kuka_prism/meshes/P2_Wrist_Link.STL" />
+        </geometry>
+        <material
+          name="">
+          <color
+            rgba="0.917647058823529 0.43921568627451 0.0666666666666667 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://kuka_prism/meshes/P2_Wrist_Link.STL" />
+        </geometry>
+      </collision>
+  </link>
+  <gazebo reference="P2_Wrist_Link">
+    <material>Gazebo/Orange</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <joint  name="P2_Wrist_Joint"  type="revolute">
+    <origin
+      xyz="-0.053493 -0.019685 0.2"
+      rpy="1.5708 0.53965 1.9234" />
+    <parent
+      link="Upper_P2_Link" />
+    <child
+      link="P2_Wrist_Link" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-1.54"
+      upper="2.24"
+      effort="100"
+      velocity="3" />
+    <dynamics damping="100" friction="5.0"/>
+  </joint>
+  <transmission name="p2_wrist_rev_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="P2_Wrist_Joint">
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="p2_wrist_rev_motor">
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+
+  <link  name="Grip1_Link">
+    <inertial>
+      <origin
+        xyz="0.0177612035288109 0.0111853693539352 2.77555756156289E-17"
+        rpy="0 0 0" />
+        <mass
+        value="0.11653" />
+        <inertia
+        ixx="3.9246E-05"
+        ixy="-4.7946E-20"
+        ixz="1.0258E-05"
+        iyy="7.1189E-05"
+        iyz="-3.946E-20"
+        izz="8.4875E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kuka_prism/meshes/Grip1_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kuka_prism/meshes/Grip1_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="Grip1_Link">
+    <material>Gazebo/Green</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <joint  name="Grip1_Joint"  type="prismatic">
+    <origin
+      xyz="-0.14302 0.090035 0.06608"
+      rpy="3.1416 0 -3.1416" />
+    <parent
+      link="P2_Wrist_Link" />
+    <child
+      link="Grip1_Link" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-0.225"
+      upper="0.230"
+      effort="200"
+      velocity="3" />
+  </joint>
+  <transmission name="grip1_pris_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="Grip1_Joint">
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="grip1_pris_motor">
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+
+  <link  name="Grip2_Link">
+    <inertial>
+      <origin
+        xyz="0.0177612035287864 0.011185369353921 -1.11022302462516E-16"
+        rpy="0 0 0" />
+      <mass
+        value="0.11653" />
+      <inertia
+        ixx="3.9246E-05"
+        ixy="-4.7946E-20"
+        ixz="1.0258E-05"
+        iyy="7.1189E-05"
+        iyz="-3.946E-20"
+        izz="8.4875E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kuka_prism/meshes/Grip2_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://kuka_prism/meshes/Grip2_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="Grip2_Link">
+    <material>Gazebo/Green</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <joint  name="Grip2_Joint"  type="prismatic">
+    <origin
+      xyz="-0.14302 0.090035 0.015861"
+      rpy="-3.1416 0 -3.1416" />
+    <parent
+      link="P2_Wrist_Link" />
+    <child
+      link="Grip2_Link" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-0.190"
+      upper="0.235"
+      effort="200"
+      velocity="3" />
+  </joint>
+  <transmission name="grip2_pris_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="Grip2_Joint">
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="grip2_pris_motor">
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <gazebo>
+    <plugin name="control" filename="libgazebo_ros_control.so">
+    <robotNamespace>/</robotNamespace>
+    </plugin>
+  </gazebo>
+
+  <gazebo reference="Base_Rotary_Link">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="Rotary_Lower_Link">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="Lower_Upper_Link">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="Upper_P2_Link">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="P2_Wrist_Link">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="Grip1_Link">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="Grip2_Link">
+    <selfCollide>true</selfCollide>
+  </gazebo>
+
+
+
+</robot>

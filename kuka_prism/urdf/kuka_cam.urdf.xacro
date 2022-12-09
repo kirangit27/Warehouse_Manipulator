@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<!-- Name your robot here -->
+<robot name ="kuka_prism" xmlns:xacro="http://wiki.ros.org/xacro">
+
+<!-- Include your urdf files here -->
+	<!-- Include Robot's urdf filepath -->
+	<xacro:include filename="$(find kuka_prism)/urdf/kuka_prism.urdf"/>
+	
+	<xacro:property name="camera_link" value="0.001" />
+
+	<!-- Camera -->
+	<link name="camera_link">
+		<collision>
+		<origin xyz="0 0 0" rpy="0 0 0"/>
+		<geometry>
+		<box size="${camera_link} ${camera_link} ${camera_link}"/>
+		</geometry>
+		</collision>
+
+		<visual>
+		<origin xyz="0 0 0" rpy="0 0 0"/>
+		<geometry>
+		<box size="${camera_link} ${camera_link} ${camera_link}"/>
+		</geometry>
+		<material name="red"/>
+		</visual>
+
+		<inertial>
+		<mass value="1e-5" />
+		<origin xyz="0 0 0" rpy="0 0 0"/>
+		<inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+		</inertial>
+	</link>
+	
+
+<!-- Add your gazebo sensors here -->
+	<!-- camera -->
+	<gazebo reference="camera_link">
+		<sensor type="camera" name="camera1">
+			<update_rate>30.0</update_rate>
+				<camera name="head">
+					<horizontal_fov>1.3962634</horizontal_fov>
+					<image>
+					<width>800</width>
+					<height>800</height>
+					<format>R8G8B8</format>
+					</image>
+					<clip>
+					<near>0.02</near>
+					<far>300</far>
+					</clip>
+					<noise>
+					<type>gaussian</type>
+					<!-- Noise is sampled independently per pixel on each frame.
+						That pixel's noise value is added to each of its color
+						channels, which at that point lie in the range [0,1]. -->
+					<mean>0.0</mean>
+					<stddev>0.007</stddev>
+					</noise>
+				</camera>
+				<plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+					<alwaysOn>true</alwaysOn>
+					<updateRate>0.0</updateRate>
+					<cameraName>kuka/camera1</cameraName>
+					<imageTopicName>image_raw</imageTopicName>
+					<cameraInfoTopicName>camera_info</cameraInfoTopicName>
+					<frameName>camera_link</frameName>
+					<hackBaseline>0.07</hackBaseline>
+					<distortionK1>0.0</distortionK1>
+					<distortionK2>0.0</distortionK2>
+					<distortionK3>0.0</distortionK3>
+					<distortionT1>0.0</distortionT1>
+					<distortionT2>0.0</distortionT2>
+				</plugin>
+			</sensor>
+	</gazebo>
+
+
+<!-- Create a joint between your robot and sensor 1.5708-->
+	 <joint
+	    name="base-cam joint"
+	    type="fixed">
+	    <origin
+	      xyz="-0.14 0.09 0.04"
+	      rpy="0 0 2.7489" />
+	    <parent
+	      link="P2_Wrist_Link" />
+	    <child
+	      link="camera_link" />
+	 </joint>
+
+	 <gazebo>
+		<plugin name="gazebo_grasp_fix" filename="libgazebo_grasp_fix.so">
+			 <arm>
+				<arm_name>arm_group</arm_name>
+				<palm_link> P2_Wrist_Link  </palm_link>
+				<gripper_link> Grip1_Link </gripper_link>
+				<gripper_link> Grip2_Link </gripper_link>
+			 </arm>
+			<forces_angle_tolerance>100</forces_angle_tolerance>
+			<update_rate>4</update_rate>
+			<grip_count_threshold>4</grip_count_threshold>
+			<max_grip_count>8</max_grip_count>
+			<release_tolerance>0.005</release_tolerance>
+			<disable_collisions_on_attach>false</disable_collisions_on_attach>
+			<contact_topic>__default_topic__</contact_topic>
+		 </plugin>
+	 </gazebo>
+	 
+	 
+
+</robot>	

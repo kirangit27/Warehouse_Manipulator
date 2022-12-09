@@ -1,0 +1,19 @@
+controller_list:
+  - name: fake_arm_group_controller
+    type: $(arg fake_execution_type)
+    joints:
+      - Base_Rotary_Joint
+      - Rotary_Lower_Joint
+      - Lower_Upper_Joint
+      - Upper_P2_Joint
+      - P2_Wrist_Joint
+  - name: fake_end_effector_controller
+    type: $(arg fake_execution_type)
+    joints:
+      - Grip1_Joint
+      - Grip2_Joint
+initial:  # Define initial robot poses per group
+  - group: arm_group
+    pose: rest
+  - group: end_effector
+    pose: open

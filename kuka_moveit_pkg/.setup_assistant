@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: kuka_prism
+    relative_path: urdf/kuka_prism.urdf
+    xacro_args: ""
+  SRDF:
+    relative_path: config/kuka_prism.srdf
+  CONFIG:
+    author_name: Kiran Patil
+    author_email: kpatil27@umd.edu
+    generated_timestamp: 1670031874

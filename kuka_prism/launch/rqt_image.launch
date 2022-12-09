@@ -1,0 +1,4 @@
+<launch>
+
+    <node pkg="rqt_image_view" type="rqt_image_view" name="kuka_feed" args="/kuka/camera1/image_raw"/>
+</launch>

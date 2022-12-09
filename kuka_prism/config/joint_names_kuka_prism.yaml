@@ -1,0 +1,1 @@
+controller_joint_names: ['', 'Base_Rotary_Joint', 'Rotary_Lower_Joint', 'Lower_Upper_Joint', 'Upper_P2_Joint', 'P2_Wrist_Joint', 'Grip1_Joint', 'Grip2_Joint', ]
