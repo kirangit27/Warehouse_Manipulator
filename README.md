@@ -1,6 +1,8 @@
 # Warehouse_Manipulator
 Pick and Place task done in an industrial environment using KUKA KR-16 model with the help of Gazebo, RViz and Moveit.
 
+![Simulation_gif](https://user-images.githubusercontent.com/38507208/206816253-88b35a21-b5a1-4762-9004-3bc5b2dec56a.gif)
+
 <a name="2.0"></a>
 
 ### Environment Setup
